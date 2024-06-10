@@ -54,6 +54,7 @@ def home():
         title = request.form['title']
         recommendations = get_recommendations(title, df, cosine_sim)
     return render_template('index.html', recommendations=recommendations)
+    
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
