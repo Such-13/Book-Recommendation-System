@@ -1,0 +1,116 @@
+System Architecture Design Document
+1. Overview
+This document provides a comprehensive architecture design for the Book Recommender System. It details the major components, their interactions, and data flow within the system. The system is designed to allow users to input a book title and receive a list of recommended books based on cosine similarity of combined textual features.
+
+Wireframe Document
+Wireframe Diagram
+The following wireframe diagram visually represents the high-level architecture of the Book Recommender System. This can be created using tools like Microsoft Visio, Lucidchart, or draw.io.
+
+plaintext
+Copy code
++-------------------+           +-------------------------+
+|   User Interface  |           |    Recommendation       |
+|                   |           |          Engine         |
+| - User Input Form |           |  +-------------------+  |
+| - Display Results |           |  | Model Training    |  |
+|                   |           |  |     Module        |  |
++---------+---------+           |  +-------------------+  |
+          |                     |           |             |
+          v                     |  +-------------------+  |
++-------------------+           |  | Recommendation    |  |
+|    Flask Server   |           |  |     Module        |  |
+|                   |           |  +-------------------+  |
+|  +-------------+  |           +-----------+-------------+
+|  | Data Loading|  |                       |
+|  |    Module   +<-------------------------+
+|  +-------------+  |                       |
+|                   |           +-----------v-------------+
+|  +-------------+  |           |    Data Storage         |
+|  |    CSV      |  |           |                         |
+|  |    Joblib   +<-------------------------+
+|  +-------------+  |                       |
++-------------------+                       |
+                                            |
+                                            v
+                                +-------------------------+
+                                |  Model Preprocessing    |
+                                |          Layer          |
+                                |                         |
+                                +-------------------------+
+Architecture Document
+1. Overview
+The architecture of the Book Recommender System follows a client-server model, utilizing a web interface for user interactions and a backend server to handle data processing and machine learning tasks.
+
+2. System Architecture
+The system is divided into several major components:
+
+User Interface: A web-based UI built with HTML and CSS where users can input book titles and view recommendations.
+Backend Server: A Flask application written in Python that handles HTTP requests, processes data, and interacts with the recommendation engine.
+Recommendation Engine: A set of modules that preprocess data, train the machine learning model, and generate book recommendations.
+Data Storage: A combination of CSV files for storing book data and Joblib files for storing the pre-trained machine learning model.
+3. Major Components
+3.1 User Interface
+User Input Form: Allows users to input a book title.
+Display Results: Shows the list of recommended books to the user.
+3.2 Backend Server (Flask Application)
+Data Loading Module: Responsible for loading the book dataset and the pre-trained model.
+Routes: Handles the main routing for the web application.
+Home Route (/): Displays the input form and handles the form submission.
+3.3 Recommendation Engine
+Model Training Module: Preprocesses the book data and trains the machine learning model.
+Recommendation Module: Generates a list of recommended books based on the cosine similarity of combined textual features.
+3.4 Data Storage
+CSV File: Stores the book dataset.
+Joblib File: Stores the pre-trained cosine similarity model.
+4. Data Flow
+User Input: The user enters a book title in the web application.
+Form Submission: The input is sent to the Flask server via an HTTP POST request.
+Processing: The server uses the recommendation engine to process the input and generate recommendations.
+Response: The server sends the list of recommended books back to the web application.
+Display: The web application displays the recommended books to the user.
+5. Technology Stack
+Frontend: HTML, CSS
+Backend: Python (Flask framework)
+Machine Learning: Scikit-learn (for cosine similarity), Pandas (for data handling)
+Storage: CSV (for book data), Joblib (for model storage)
+Detailed Explanation of Components
+1. User Interface (Web Application)
+The user interface is a web page built with HTML and styled with CSS. It includes an input form where users can enter a book title and a section to display the recommended books.
+
+2. Backend Server (Flask Application)
+The Flask application handles the backend logic. It includes:
+
+Routing: Manages the URL endpoints.
+Data Loading: Loads the book dataset and pre-trained model from storage.
+Recommendation Logic: Uses the recommendation engine to process user input and generate recommendations.
+3. Recommendation Engine
+The recommendation engine is responsible for:
+
+Preprocessing: Cleans and preprocesses the book data.
+Model Training: Trains a machine learning model using the TF-IDF vectorizer and cosine similarity.
+Recommendation Generation: Generates recommendations based on cosine similarity scores.
+4. Data Storage
+The data storage component includes:
+
+CSV File: Contains the book dataset.
+Joblib File: Contains the pre-trained cosine similarity model.
+Wireframe Document Example
+Home Page Wireframe
+plaintext
+Copy code
+-----------------------------------------------------
+| Book Recommender System                           |
+|---------------------------------------------------|
+| Enter a book title:                               |
+| [________________________________________] [Get Recommendations] |
+|                                                   |
+|---------------------------------------------------|
+| Recommendations:                                  |
+| - Book Title 1                                    |
+| - Book Title 2                                    |
+| - Book Title 3                                    |
+| - Book Title 4                                    |
+| - Book Title 5                                    |
+-----------------------------------------------------
+Summary
+This system architecture design document outlines the high-level structure and data flow of the Book Recommender System. The architecture is designed to be modular and scalable, ensuring ease of maintenance and extensibility. The wireframe and architecture diagrams help visualize the interactions between different components, providing a clear roadmap for implementation.
