@@ -1,0 +1,73 @@
+High-Level Design (HLD) Document
+
+1. Overview
+This document provides a high-level overview of the Book Recommender System, detailing its major components, architecture, and data flow. The system allows users to input a book title and receive a list of recommended books based on cosine similarity of combined textual features.
+
+2. System Architecture
+The system follows a client-server architecture with a web interface built using Flask (a Python web framework) and a machine learning backend for recommendations.
+
+3. Major Components
+Web Application: User interface for entering book titles and displaying recommendations.
+Model Training Module: Preprocesses data and trains the machine learning model.
+Recommendation Engine: Provides book recommendations based on user input.
+Data Storage: Stores book data and pre-trained model files.
+
+4. Data Flow
+User enters a book title on the web application.
+The input is sent to the Flask server.
+The server uses the recommendation engine to generate a list of similar books.
+Recommendations are sent back to the web application and displayed to the user.
+
+5. Technology Stack
+Frontend: HTML, CSS (for styling)
+Backend: Python (Flask framework)
+Machine Learning: Scikit-learn (for cosine similarity), Pandas (for data handling)
+Storage: CSV (for book data), Joblib (for model storage)
+
+
++-------------------+           +-------------------------+
+|   User Interface  |           |    Recommendation       |
+|                   |           |          Engine         |
+| - User Input Form |           |  +-------------------+  |
+| - Display Results |           |  | Model Training    |  |
+|                   |           |  |     Module        |  |
++---------+---------+           |  +-------------------+  |
+          |                     |           |             |
+          v                     |  +-------------------+  |
++-------------------+           |  | Recommendation    |  |
+|    Flask Server   |           |  |     Module        |  |
+|                   |           |  +-------------------+  |
+|  +-------------+  |           +-----------+-------------+
+|  | Data Loading|  |                       |
+|  |    Module   +<-------------------------+
+|  +-------------+  |                       |
+|                   |           +-----------v-------------+
+|  +-------------+  |           |    Data Storage         |
+|  |    CSV      |  |           |                         |
+|  |    Joblib   +<-------------------------+
+|  +-------------+  |                       |
++-------------------+                       |
+                                            |
+                                            v
+                                +-------------------------+
+                                |  Model Preprocessing    |
+                                |          Layer          |
+                                |                         |
+                                +-------------------------+
+Explanation
+User Interface: This is where users interact with the system by entering a book title and viewing the recommendations.
+
+User Input Form: Users enter the book title here.
+Display Results: Recommendations are displayed here.
+Flask Server: This is the backend server that handles requests from the user interface.
+
+Data Loading Module: Loads the book data and pre-trained model.
+Recommendation Engine: This component provides book recommendations based on user input.
+
+Model Training Module: Preprocesses data and trains the machine learning model.
+Recommendation Module: Generates book recommendations using the pre-trained model.
+Data Storage: This stores the book data and pre-trained model files.
+
+CSV: Stores the book data.
+Joblib: Stores the pre-trained machine learning model.
+Model Preprocessing Layer: This layer preprocesses the data for model training and recommendation generation.
