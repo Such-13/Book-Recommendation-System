@@ -24,7 +24,6 @@ Backend: Python (Flask framework)
 Machine Learning: Scikit-learn (for cosine similarity), Pandas (for data handling)
 Storage: CSV (for book data), Joblib (for model storage)
 
-
 +-------------------+           +-------------------------+
 |   User Interface  |           |    Recommendation       |
 |                   |           |          Engine         |
@@ -54,6 +53,7 @@ Storage: CSV (for book data), Joblib (for model storage)
                                 |          Layer          |
                                 |                         |
                                 +-------------------------+
+
 Explanation
 User Interface: This is where users interact with the system by entering a book title and viewing the recommendations.
 
